@@ -2,7 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import { fetchWeatherData, getWeatherForecast } from "../axios/weatherData";
+import {
+  fetchWeatherData,
+  getWeatherForecast,
+  fetchWeatherDataLongLat,
+} from "../axios/weatherData";
 import { BiCurrentLocation } from "react-icons/bi";
 
 import { useEffect, useState } from "react";
@@ -10,10 +14,11 @@ import { useEffect, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [location, setLocation] = useState("London");
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [data, setData] = useState();
-  const [fiveDayForecast, setFiveDayForecast] = useState();
+  const [location, setLocation] = useState("paris"); // set location
+  const [isSubmit, setIsSubmit] = useState(false); // track submit button
+  const [data, setData] = useState(); // hold apu data for current weather
+  const [fiveDayForecast, setFiveDayForecast] = useState(); // hold data for
+  // const [isGeoLocation, setIsGeoLocation] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -33,14 +38,22 @@ export default function Home() {
   }, [isSubmit]);
 
   // console.log(fiveDayForecast);
+  // console.log(isGeoLocation);
 
   function getLocation() {
     // retrieve geolocation
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
+      fetchWeatherDataLongLat(
+        position.coords.longitude.toString(),
+        position.coords.latitude.toString(),
+        setData
+      );
     });
   }
+
+  console.log(data);
 
   return (
     <>
@@ -65,6 +78,7 @@ export default function Home() {
           ></input>
           <button onClick={handleSubmit}>Submit</button>
         </form>
+
         <button onClick={getLocation}>
           <BiCurrentLocation />
         </button>
