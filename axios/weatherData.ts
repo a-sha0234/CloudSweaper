@@ -33,10 +33,31 @@ async function getWeatherForecast(city: string, setter: any) {
 }
 
 async function fetchWeatherDataLongLat(lon: string, lat: string, setter: any) {
-  // get 5 day weather forecast from city
+  // get current weather on city using geolcation
   try {
     const res = await axios(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=708dbd9b677bb41f1461a55259144588
+`
+    );
+    if (res.status !== 200) {
+      throw new Error();
+    }
+
+    setter(res);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function fetchWeatherForecastLongLat(
+  lon: string,
+  lat: string,
+  setter: any
+) {
+  // get 5 day weather forecast using geolocation
+  try {
+    const res = await axios(
+      `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=708dbd9b677bb41f1461a55259144588
 `
     );
     if (res.status !== 200) {
