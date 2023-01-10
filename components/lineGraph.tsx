@@ -90,6 +90,9 @@ const LineGraph: React.FC<Props> = ({ forecast }) => {
         grid: {
           display: false,
         },
+        ticks: {
+          display: false,
+        },
       },
     },
   };
