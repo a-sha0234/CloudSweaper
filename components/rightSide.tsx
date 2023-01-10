@@ -1,19 +1,18 @@
 import * as React from "react";
 import LineGraph from "./lineGraph";
+import { useContext } from "react";
+// import { Context } from "../pages/index";
+
 interface Props {
   data: any;
   forecast: any;
 }
 const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
-  // console.log(forecast.data.list);
+  // const value = useContext(Context);
 
-  function fiveForecast() {}
+  let foreCastData = forecast;
 
-  return (
-    <div>
-      <LineGraph />
-    </div>
-  );
+  return <div> {forecast && <LineGraph forecast={foreCastData} />}</div>;
 };
 
 export default RightSideInformation;

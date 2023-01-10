@@ -57,7 +57,7 @@ async function fetchWeatherForecastLongLat(
   // get 5 day weather forecast using geolocation
   try {
     const res = await axios(
-      `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=708dbd9b677bb41f1461a55259144588
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=708dbd9b677bb41f1461a55259144588
 `
     );
     if (res.status !== 200) {
@@ -70,4 +70,9 @@ async function fetchWeatherForecastLongLat(
   }
 }
 
-export { fetchWeatherData, getWeatherForecast, fetchWeatherDataLongLat };
+export {
+  fetchWeatherData,
+  getWeatherForecast,
+  fetchWeatherDataLongLat,
+  fetchWeatherForecastLongLat,
+};

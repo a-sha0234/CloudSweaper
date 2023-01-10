@@ -13,8 +13,4 @@ const weather: { type: string; image: string }[] = [
   { type: "Clear", image: "sun.gif" },
 ];
 
-function kelvinToCelcius(temp: number): number {
-  return temp - 273.15;
-}
-
-export { weather, kelvinToCelcius };
+export { weather };

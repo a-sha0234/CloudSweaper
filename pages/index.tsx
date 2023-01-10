@@ -6,19 +6,18 @@ import {
   fetchWeatherData,
   getWeatherForecast,
   fetchWeatherDataLongLat,
+  fetchWeatherForecastLongLat,
 } from "../axios/weatherData";
 import { BiCurrentLocation } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import LeftSideInformation from "../components/leftSide";
 import RightSideInformation from "../components/rightSide";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
   const [location, setLocation] = useState("paris"); // set location
   const [isSubmit, setIsSubmit] = useState(false); // track submit button
-  const [data, setData] = useState(); // hold apu data for current weather
-  const [fiveDayForecast, setFiveDayForecast] = useState(); // hold data for
+  const [data, setData] = useState(""); // hold apu data for current weather
+  const [fiveDayForecast, setFiveDayForecast] = useState(""); // hold data for five day forecast
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -42,15 +41,47 @@ export default function Home() {
 
   function getLocation() {
     // retrieve geolocation
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   fetchWeatherDataLongLat(
+    //     position.coords.longitude.toString(),
+    //     position.coords.latitude.toString(),
+    //     setData
+    //   );
+    // });
+    //-----------testing
+    // setIfGeolocation((prev: any) => {
+    //   return !prev;
+    // });
     navigator.geolocation.getCurrentPosition(function (position) {
       fetchWeatherDataLongLat(
         position.coords.longitude.toString(),
         position.coords.latitude.toString(),
+
         setData
+      );
+      fetchWeatherForecastLongLat(
+        position.coords.longitude.toString(),
+        position.coords.latitude.toString(),
+        setFiveDayForecast
       );
     });
   }
 
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     fetchWeatherDataLongLat(
+  //       position.coords.longitude.toString(),
+  //       position.coords.latitude.toString(),
+  //       setData
+  //     );
+  //     fetchWeatherForecastLongLat(
+  //       position.coords.longitude.toString(),
+  //       position.coords.latitude.toString(),
+  //       setFiveDayForecast
+  //     );
+  //   });
+  // }, [ifGeolocation]);
+  //-----------
   console.log(data);
 
   return (
@@ -79,12 +110,15 @@ export default function Home() {
         <button onClick={getLocation}>
           <BiCurrentLocation />
         </button>
-        {data && (
-          <div>
-            <LeftSideInformation data={data} />
-            <RightSideInformation data={data} forecast={fiveDayForecast} />
-          </div>
-        )}
+
+        <div>
+          {data && fiveDayForecast && (
+            <div>
+              <LeftSideInformation data={data} />
+              <RightSideInformation data={data} forecast={fiveDayForecast} />
+            </div>
+          )}
+        </div>
       </main>
     </>
   );

@@ -9,7 +9,7 @@ const LeftSideInformation: React.FC<Props> = ({ data }) => {
   // console.log("leftside comp...." + data.data.base);
   // console.log(data.data);
 
-  console.log(weather);
+  // console.log(weather);
 
   let image = () => {
     for (let i = 0; i < weather.length; i++) {

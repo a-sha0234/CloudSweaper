@@ -1,4 +1,8 @@
+import * as React from "react";
+import { useState } from "react";
 import { Line } from "react-chartjs-2";
+
+import { useContext } from "react";
 import {
   Chart as ChartJS,
   LineElement,
@@ -6,51 +10,85 @@ import {
   LinearScale,
   PointElement,
   Filler,
+  Tooltip,
+  scales,
 } from "chart.js";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Filler);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Filler,
+  Tooltip,
+  scales
+);
 
-const LineGraph = () => {
+interface Props {
+  forecast: any;
+}
+
+const LineGraph: React.FC<Props> = ({ forecast }) => {
+  function getTemp() {
+    // return array of temperatures
+    let temparature = [];
+    for (let i = 4; i < forecast.data.list.length; i += 6) {
+      temparature.push(Math.round(forecast.data.list[i].main.temp - 273.15));
+    }
+    temparature.pop();
+    return temparature;
+  }
+
+  function getDates() {
+    // get dates from temps
+    let dates = [];
+    for (let i = 4; i < forecast.data.list.length; i += 6) {
+      let data = forecast.data.list[i].dt_txt.split(" ");
+      dates.push(data[0]);
+    }
+
+    dates.pop();
+
+    return dates;
+  }
+
   const data = {
-    labels: ["1 Dec", "8 Dec", "16 Dec", "31 Dec"],
+    labels: getDates(),
     datasets: [
       {
-        label: "Sales Made",
-        data: [3, 7, 4, 5],
-        borderColor: ["red"],
+        label: "Dataset 1",
+        data: getTemp(),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        tension: 0.4,
         fill: true,
-        backgroundColor: "red",
       },
     ],
   };
+
   const options = {
-    tension: 0.4,
-    title: {
-      display: true,
-      text: "linechrt",
+    responsive: true,
+
+    plugins: {
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
     },
     scales: {
-      //   y: [
-      //     {
-      //       gridLines: {
-      //         display: false,
-      //       },
-      //       display: true,
-      //       stacked: true,
-      //       ticks: {
-      //         beginAtZero: true,
-      //         steps: 2,
-      //         stepValue: 5,
-      //         min: 0,
-      //         max: 100,
-      //       },
-      //     },
-      //   ],
       y: {
-        min: 3,
-        max: 3,
-        gridLines: {
-          lineWidth: 0,
+        grid: {
+          display: false,
+          drawBorder: false,
+        },
+
+        ticks: {
+          display: false,
+        },
+      },
+      x: {
+        grid: {
+          display: false,
         },
       },
     },
@@ -58,21 +96,12 @@ const LineGraph = () => {
 
   return (
     <div>
-      <Line
-        // data={{
-        //   labels: ["red", "blue"],
-        //   datasets: [
-        //     {
-        //       label: "efae",
-        //       data: [23, 56, 7],
-        //       backgroundColor: "green",
-        //       borderColor: "red",
-        //       fill: true,
-        //     },
-        //   ],
-        // }}
-        data={{ ...data }}
-      ></Line>
+      {forecast && (
+        <div>
+          <Line options={options} data={data}></Line>
+          {/* <h3>{forecast.data.list[0]}</h3> */}
+        </div>
+      )}
     </div>
   );
 };
