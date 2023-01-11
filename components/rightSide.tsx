@@ -2,6 +2,8 @@ import * as React from "react";
 import LineGraph from "./lineGraph";
 import Card from "./card";
 import { type } from "os";
+// import styles from "../styles/RightSide.module.css";
+import styles from "../styles/RightSide.module.css";
 
 interface Props {
   data: any;
@@ -22,13 +24,23 @@ const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
   ];
 
   return (
-    <div>
-      {" "}
-      {forecast && <LineGraph forecast={foreCastData} />}{" "}
-      {stats.map((attribute: any) => {
-        return <Card attribute={attribute} />;
-      })}
-    </div>
+    <main className={styles.rightSide}>
+      <div className={styles.cardContainer}>
+        {" "}
+        {forecast && (
+          <div className={styles.lineGraph}>
+            <LineGraph forecast={foreCastData} />{" "}
+          </div>
+        )}{" "}
+        {stats.map((attribute: any) => {
+          return (
+            <div>
+              <Card attribute={attribute} />
+            </div>
+          );
+        })}
+      </div>
+    </main>
   );
 };
 

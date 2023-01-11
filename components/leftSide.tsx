@@ -2,6 +2,7 @@ import * as React from "react";
 import { weather } from "../helper";
 import { CiLocationOn } from "react-icons/ci";
 import { getCurrentDay } from "../helper";
+import styles from "../styles/LeftSide.module.css";
 
 interface Props {
   data: any;
@@ -22,9 +23,9 @@ const LeftSideInformation: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <div>
+    <main className={styles.leftside}>
       {" "}
-      <img src={image()} width={400} height={400} />{" "}
+      <img src={image()} className={styles.weatherImage} />{" "}
       <p>{Math.round(data.data.main.temp - 273.15)}</p>
       <p>{data.data.weather[0].description}</p>
       <div>
@@ -35,7 +36,7 @@ const LeftSideInformation: React.FC<Props> = ({ data }) => {
       </div>
       <CiLocationOn />
       <span>{data.data.name}</span>
-    </div>
+    </main>
   );
 };
 

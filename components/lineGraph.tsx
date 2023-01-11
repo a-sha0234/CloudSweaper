@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 import { Line } from "react-chartjs-2";
 
-import { useContext } from "react";
 import {
   Chart as ChartJS,
   LineElement,

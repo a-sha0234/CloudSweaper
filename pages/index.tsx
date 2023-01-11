@@ -12,6 +12,7 @@ import { BiCurrentLocation } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import LeftSideInformation from "../components/leftSide";
 import RightSideInformation from "../components/rightSide";
+import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
   const [location, setLocation] = useState("paris"); // set location
@@ -93,27 +94,26 @@ export default function Home() {
         {/* <link rel="icon" href="/public/Icon.png" /> */}
       </Head>
 
-      <main>
-        <form>
+      <main className={styles.homeForm}>
+        <form className={styles.Form}>
           <input
-            style={{
-              background: "transparent",
-            }}
             type="text"
             name="place"
             placeholder="eg: London"
             value={location}
             onChange={handleChange}
           ></input>
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit} id={styles.search}>
+            <FaSearch />
+          </button>
         </form>
-        <button onClick={getLocation}>
+        <button onClick={getLocation} className={styles.GeoLocation}>
           <BiCurrentLocation />
         </button>
 
         <div>
           {data && fiveDayForecast && (
-            <div>
+            <div className={styles.sections}>
               <LeftSideInformation data={data} />
               <RightSideInformation data={data} forecast={fiveDayForecast} />
             </div>

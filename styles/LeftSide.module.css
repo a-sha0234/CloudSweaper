@@ -1,0 +1,29 @@
+/* .leftside {
+  background-color: blue;
+
+  height: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .leftside {
+    height: 50vh;
+  }
+  .leftside img {
+    height: 40%;
+  }
+} */
+
+.leftside {
+  flex-grow: 1;
+  background-color: red;
+}
+
+.weatherImage {
+  max-width: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+  .weatherImage {
+    max-width: 40%;
+  }
+}

@@ -3,3 +3,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 } */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
