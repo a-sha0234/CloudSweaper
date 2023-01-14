@@ -1,28 +1,25 @@
-/* .rightSide {
-  height: 100%;
-}
-
-.cardContainer {
-  display: grid;
-
-  background-color: rebeccapurple;
-}
-
-@media only screen and (max-width: 800px) {
-  .lineGraph {
-    max-width: 40%;
-  }
-} */
-
 .lineGraph {
   grid-column: 1/3;
   background-color: yellow;
+  display: flex;
+  margin-right: 10%;
+  margin-left: 10%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .rightSide {
   flex-grow: 1;
   background-color: darkblue;
   height: 90vh;
+}
+
+.card {
+  background-color: yellow;
+  display: flex;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 .cardContainer {
@@ -32,4 +29,50 @@
   grid-gap: 20px;
   height: 90vh;
   background-color: brown;
+
+  grid-template-areas: "item1 item1" "item2 item3" "item4 item5";
+}
+
+.cardContainer > div {
+  display: flex;
+  justify-content: center;
+  /* max-height: 70%;
+  max-width: 70%; */
+}
+
+.cardContainer > div:nth-child(1) {
+  background-color: mediumspringgreen;
+
+  grid-area: item1;
+  border-radius: 10px;
+}
+.cardContainer > div:nth-child(2) {
+  background-color: mediumspringgreen;
+  grid-area: item2;
+  border-radius: 10px;
+}
+.cardContainer > div:nth-child(3) {
+  background-color: mediumspringgreen;
+  grid-area: item3;
+  border-radius: 10px;
+}
+.cardContainer > div:nth-child(4) {
+  background-color: mediumspringgreen;
+  grid-area: item4;
+  border-radius: 10px;
+}
+
+.cardContainer > div:nth-child(5) {
+  background-color: mediumspringgreen;
+  grid-area: item5;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .cardContainer {
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "item1 " "item2" "item3" "item4" "item5";
+  }
 }

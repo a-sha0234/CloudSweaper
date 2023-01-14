@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Line } from "react-chartjs-2";
+import styles from "../styles/LineGraph.module.css";
 
 import {
   Chart as ChartJS,
@@ -31,22 +32,24 @@ const LineGraph: React.FC<Props> = ({ forecast }) => {
   function getTemp() {
     // return array of temperatures
     let temparature = [];
-    for (let i = 4; i < forecast.data.list.length; i += 6) {
+    for (let i = 0; i < forecast.data.list.length; i++) {
       temparature.push(Math.round(forecast.data.list[i].main.temp - 273.15));
     }
-    temparature.pop();
+    // temparature.pop();
     return temparature;
   }
+
+  console.log(getTemp());
 
   function getDates() {
     // get dates from temps
     let dates = [];
-    for (let i = 4; i < forecast.data.list.length; i += 6) {
+    for (let i = 0; i < forecast.data.list.length; i++) {
       let data = forecast.data.list[i].dt_txt.split(" ");
       dates.push(data[0]);
     }
 
-    dates.pop();
+    // dates.pop();
 
     return dates;
   }
@@ -67,6 +70,7 @@ const LineGraph: React.FC<Props> = ({ forecast }) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
 
     plugins: {
       title: {
@@ -97,7 +101,7 @@ const LineGraph: React.FC<Props> = ({ forecast }) => {
   };
 
   return (
-    <div>
+    <div className={styles.linegraph}>
       {forecast && (
         <div>
           <Line options={options} data={data}></Line>

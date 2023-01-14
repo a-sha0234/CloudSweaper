@@ -1,0 +1,16 @@
+.card__information {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 30%; */
+
+  flex-direction: column;
+}
+
+.description {
+  text-align: center;
+}
+
+#attribute {
+  font-size: 4rem;
+  font-weight: bolder;
+}

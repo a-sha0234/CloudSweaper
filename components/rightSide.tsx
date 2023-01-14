@@ -17,7 +17,7 @@ const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
     { information: data.data.wind.speed, type: "Wind", unit: "mph" },
     {
       information: Math.round(data.data.visibility / 1000),
-      type: "Visibility ",
+      type: "Visibility",
       unit: "Km",
     },
     { information: data.data.main.pressure, type: "Pressure", unit: "" },
@@ -27,14 +27,13 @@ const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
     <main className={styles.rightSide}>
       <div className={styles.cardContainer}>
         {" "}
-        {forecast && (
-          <div className={styles.lineGraph}>
-            <LineGraph forecast={foreCastData} />{" "}
-          </div>
-        )}{" "}
+        <div className={styles.lineGraph}>
+          <p>5 day forecast</p>
+          <LineGraph forecast={foreCastData} />{" "}
+        </div>{" "}
         {stats.map((attribute: any) => {
           return (
-            <div>
+            <div className={styles.card}>
               <Card attribute={attribute} />
             </div>
           );

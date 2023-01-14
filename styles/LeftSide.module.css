@@ -14,16 +14,32 @@
 } */
 
 .leftside {
-  flex-grow: 1;
   background-color: red;
+  display: flex;
+  flex-direction: column;
+  font-size: 150%;
 }
 
-.weatherImage {
-  max-width: 80%;
+.information {
+  text-align: center;
 }
+
+.information > * {
+  margin-top: 30px;
+}
+
+/* .weatherImage {
+  max-width: 80%;
+} */
 
 @media only screen and (max-width: 800px) {
+  .leftside {
+    justify-content: center;
+    align-items: center;
+  }
+
   .weatherImage {
     max-width: 40%;
+    margin-left: 28%;
   }
 }
