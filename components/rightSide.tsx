@@ -20,7 +20,7 @@ const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
       type: "Visibility",
       unit: "Km",
     },
-    { information: data.data.main.pressure, type: "Pressure", unit: "" },
+    { information: data.data.main.pressure, type: "Pressure", unit: "Pa" },
   ];
 
   return (
@@ -28,7 +28,7 @@ const RightSideInformation: React.FC<Props> = ({ data, forecast }) => {
       <div className={styles.cardContainer}>
         {" "}
         <div className={styles.lineGraph}>
-          <p>5 day forecast</p>
+          <p style={{ color: "white" }}>Next 5 days </p>
           <LineGraph forecast={foreCastData} />{" "}
         </div>{" "}
         {stats.map((attribute: any) => {

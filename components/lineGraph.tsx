@@ -60,8 +60,8 @@ const LineGraph: React.FC<Props> = ({ forecast }) => {
       {
         label: "Dataset 1",
         data: getTemp(),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "white",
+        backgroundColor: "white",
         tension: 0.4,
         fill: true,
       },

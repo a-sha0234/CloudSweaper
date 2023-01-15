@@ -9,17 +9,17 @@ interface Props {
 }
 
 const LeftSideInformation: React.FC<Props> = ({ data }) => {
-  // console.log("leftside comp...." + data.data.base);
-  // console.log(data.data);
-
-  // console.log(weather);
-
   let image = () => {
+    let img = "";
+    // get image based on weather type
     for (let i = 0; i < weather.length; i++) {
       if (weather[i].type == data.data.weather[0].main) {
-        return weather[i].image;
+        // return weather[i].image;
+        img += weather[i].image;
       }
     }
+
+    return (img = !"" ? img : weather[0].image);
   };
 
   return (
@@ -29,16 +29,25 @@ const LeftSideInformation: React.FC<Props> = ({ data }) => {
         <img src={image()} className={styles.weatherImage} />{" "}
       </section>
       <section className={styles.information}>
-        <p>{Math.round(data.data.main.temp - 273.15)}°C</p>
-        <p>{data.data.weather[0].description}</p>
+        <p style={{ fontSize: "4rem", fontWeight: "bolder" }}>
+          {Math.round(data.data.main.temp - 273.15)}
+          <span style={{ color: "grey" }}>°c</span>
+        </p>
+        <p style={{ fontWeight: "bolder", fontSize: "1.5rem" }}>
+          {data.data.weather[0].description}
+        </p>
         <div>
-          <span>Today</span>
-          <span>
-            {getCurrentDay()[2]}. {getCurrentDay()[1]} {getCurrentDay()[0]}{" "}
+          <span style={{ fontWeight: "bolder", fontSize: "1rem" }}>
+            Today .{" "}
+          </span>
+          <span style={{ fontWeight: "bolder", fontSize: "1rem" }}>
+            {getCurrentDay()[2]} {getCurrentDay()[1]} {getCurrentDay()[0]}{" "}
           </span>
         </div>
         <CiLocationOn />
-        <span>{data.data.name}</span>
+        <span style={{ fontWeight: "bolder", fontSize: "1rem" }}>
+          {data.data.name}
+        </span>
       </section>
     </main>
   );

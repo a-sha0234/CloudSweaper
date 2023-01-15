@@ -14,10 +14,12 @@
 } */
 
 .leftside {
-  background-color: red;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
-  font-size: 150%;
+  /* font-size: 150%; */
+  background-color: #18435a;
+  color: white;
 }
 
 .information {
@@ -26,6 +28,10 @@
 
 .information > * {
   margin-top: 30px;
+}
+
+#temperature {
+  font-size: 3rem;
 }
 
 /* .weatherImage {

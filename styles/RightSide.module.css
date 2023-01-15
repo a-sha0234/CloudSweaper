@@ -9,6 +9,9 @@
   align-items: center;
 }
 
+.lineGraph p {
+}
+
 .rightSide {
   flex-grow: 1;
   background-color: darkblue;
@@ -16,7 +19,7 @@
 }
 
 .card {
-  background-color: yellow;
+  background-color: #18435a;
   display: flex;
   margin-right: 10%;
   margin-left: 10%;
@@ -28,7 +31,7 @@
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 20px;
   height: 90vh;
-  background-color: brown;
+  background-color: #13293d;
 
   grid-template-areas: "item1 item1" "item2 item3" "item4 item5";
 }
@@ -41,29 +44,29 @@
 }
 
 .cardContainer > div:nth-child(1) {
-  background-color: mediumspringgreen;
-
+  background-color: #18435a;
+  margin-top: 20px;
   grid-area: item1;
   border-radius: 10px;
 }
 .cardContainer > div:nth-child(2) {
-  background-color: mediumspringgreen;
+  background-color: #18435a;
   grid-area: item2;
   border-radius: 10px;
 }
 .cardContainer > div:nth-child(3) {
-  background-color: mediumspringgreen;
+  background-color: #18435a;
   grid-area: item3;
   border-radius: 10px;
 }
 .cardContainer > div:nth-child(4) {
-  background-color: mediumspringgreen;
+  background-color: #18435a;
   grid-area: item4;
   border-radius: 10px;
 }
 
 .cardContainer > div:nth-child(5) {
-  background-color: mediumspringgreen;
+  background-color: #18435a;
   grid-area: item5;
   border-radius: 10px;
 }

@@ -106,11 +106,11 @@ export default function Home() {
               onChange={handleChange}
             ></input>
             <button onClick={handleSubmit} id={styles.search}>
-              <FaSearch />
+              <FaSearch size={30} />
             </button>
           </form>
           <button onClick={getLocation} className={styles.GeoLocation}>
-            <BiCurrentLocation />
+            <BiCurrentLocation size={30} />
           </button>
         </div>
 

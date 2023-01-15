@@ -1,7 +1,7 @@
 import { FaWind } from "react-icons/fa";
-import { Line, Circle } from "rc-progress";
+import { MdVisibility } from "react-icons/md";
 import styles from "../styles/Card.module.css";
-
+import ProgressBar from "@ramonak/react-progress-bar";
 interface Props {
   attribute: any;
 }
@@ -18,14 +18,27 @@ const Card: React.FC<Props> = ({ attribute }) => {
       return "Pressure";
     }
   }
+
   return (
     <div className={styles.card__information}>
       <p className={styles.description}>{text()}</p>
       <p id={styles.attribute}>
-        {attribute.information} {attribute.unit}
+        {attribute.information}{" "}
+        <span style={{ color: "grey" }}>{attribute.unit}</span>
       </p>
-
-      <div>{attribute.type == "Wind" && <FaWind />} </div>
+      {attribute.type == "Humidity" && (
+        <ProgressBar
+          completed={attribute.information}
+          isLabelVisible={false}
+          bgColor="#ffffff"
+          baseBgColor="grey"
+          animateOnRender
+        />
+      )}
+      <div style={{ textAlign: "center" }}>
+        {attribute.type == "Wind" && <FaWind size={25} />}{" "}
+        {attribute.type == "Visibility" && <MdVisibility size={25} />}
+      </div>
     </div>
   );
 };
